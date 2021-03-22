@@ -1,0 +1,36 @@
+재귀에 대하여
+Iteration
+extra memory를 필요로 하지 않는다
+
+Recursion
+extra space 를 stack memory 에 필요로 한다
+
+
+Recursion tree 에서
+T(n) = 2T(n/2) + n^2 이면
+T(n) = O(n^2)
+
+T(n) = 2T(n/2) + n 이면
+T(n) = O(nlogn)
+
+Tail Recursion
+현재함수가 더이상 필요없어진다.
+마지막에 한번의 return으로 끝난다.
+Tail optimization 의 예시
+int rsum(int n)
+{
+    if (n == 0)
+        return 0;
+    else
+        return rsum(n-1) + n;
+}
+
+을 최적화하면
+
+int rsum2(int n, int sum)
+{
+    if (n == 0)
+        return sum;
+    else
+        return rsum2(n - 1, sum + n);
+}

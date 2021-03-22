@@ -1,0 +1,61 @@
+시간복잡도에 대하여
+
+one basic operation -> one step
+    +, -, *, /, assignment, jump, comparison, etc.
+    *나 /가 +-보다 오래걸림
+
+combination of basic opeation -> one step
+    +=, *=, /=, (a + c * d), etc.
+
+float sum(float *list, int n)
+{
+    float tempsum = 0;
+    for (int i = 0; i < n; i++)
+        tempsum += *(list + i);
+    return tempsum
+}
+
+루프가 n 번 반복되고, 
+tempsum += *(list + i);
+에서 +=, *, + 로 3개의 step 이 있으니 3 * n 번
+
+float rsum(float *list, int n)
+{
+    if (n > 0)
+        return rsum(list , n - 1) + list[n - 1];
+    else
+        return 0
+}
+
+rsum(list , n - 1) + list[n - 1];
+에서 -, +, - 로 3개의 step 이 있고
+재귀가 n 번 반복되므로
+3*n 개의 step.
+
+
+asymptotic notation(점근 표기법)
+1000 * n^3 개의 step 을 갖는 알고리즘이 있고
+10 * n^2 + n 개의 step 을 갖는 알고리즘이 있을 때,
+n 이 아주아주 크다면 상수는 별 의미가 없다
+따라서 두 알고리즘의 시간복잡도를 비교한다면
+n^3 과 n^2 + n 의 시간복잡도를 비교하면 된다.
+
+Big-O notation
+f(n) = O(g(n)) 으로 표기하는데,
+f(n) 은 g(n) 보다 빨리 증가하지 않는다.
+f(n) <= c*g(n) for all n > d 를 만족하는
+c, d 가 존재한다.
+O(1): constant
+O(log2n): logarithmic
+O(n): linear
+O(n*log2n): log-linear
+O(n^2): quadratic
+O(n^3): cubic
+O(2^n): exponential
+O(n!): factorial 
+
+ex)
+3n + logn + 2 = O(n) 왜냐하면 3n + logn + 2 <= 5n for n >= 2
+10n^2 + 4n + 2 = O(n^2)
+
+
